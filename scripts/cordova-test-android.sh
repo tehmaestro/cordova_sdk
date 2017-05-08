@@ -22,7 +22,7 @@ git submodule update --init --recursive
 
 echo -e "${GREEN}>>> Running Android build script ${NC}"
 cd ${SDK_DIR}
-ext/Android/build.sh; \cp -v ext/Android/adjust-android.jar src/Android/adjust-android.jar
+ext/Android/build.sh; \mv -v ext/Android/adjust-android.jar src/Android/adjust-android.jar
 
 echo -e "${GREEN}>>> Installing Android platform ${NC}"
 cd ${SDK_DIR}/${EXAMPLE_DIR}
