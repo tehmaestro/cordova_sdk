@@ -52,7 +52,15 @@
     "com.adjust.sdk": {
         "source": {
             "type": "local",
-            "path": "/Users/ab/Dev/cordova_sdk/example_ci/node_modules/com.adjust.sdk"
+            "path": "/Users/ab/Dev/cordova_sdk"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.adjust.sdktesting": {
+        "source": {
+            "type": "local",
+            "path": "../cordova-plugin-adjust-testing"
         },
         "is_top_level": true,
         "variables": {}

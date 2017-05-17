@@ -127,7 +127,11 @@ var Adjust = {
 
     sendFirstPackages: function() {
         callCordova('sendFirstPackages');
-    }
+    },
+
+    setTestingMode: function(baseUrl) {
+        callCordova('setTestingMode', baseUrl);
+    },
 };
 
 function onPause() {

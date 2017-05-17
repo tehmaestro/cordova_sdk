@@ -31,6 +31,9 @@
         },
         "com.adjust.sdk": {
             "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "com.adjust.sdktesting": {
+            "PACKAGE_NAME": "com.adjust.examples"
         }
     },
     "dependent_plugins": {}

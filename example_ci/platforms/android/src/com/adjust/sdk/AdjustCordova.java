@@ -42,33 +42,34 @@ public class AdjustCordova extends CordovaPlugin
     private static final String KEY_USER_AGENT              = "userAgent";
     private static final String KEY_DELAY_START             = "delayStart";
 
-    private static final String COMMAND_CREATE                                   = "create";
-    private static final String COMMAND_SET_ATTRIBUTION_CALLBACK                 = "setAttributionCallback";
-    private static final String COMMAND_SET_EVENT_TRACKING_SUCCEEDED_CALLBACK    = "setEventTrackingSucceededCallback";
-    private static final String COMMAND_SET_EVENT_TRACKING_FAILED_CALLBACK       = "setEventTrackingFailedCallback";
-    private static final String COMMAND_SET_SESSION_TRACKING_SUCCEEDED_CALLBACK  = "setSessionTrackingSucceededCallback";
-    private static final String COMMAND_SET_SESSION_TRACKING_FAILED_CALLBACK     = "setSessionTrackingFailedCallback";
-    private static final String COMMAND_SET_DEFERRED_DEEPLINK_CALLBACK           = "setDeferredDeeplinkCallback";
-    private static final String COMMAND_SET_PUSH_TOKEN                           = "setPushToken";
-    private static final String COMMAND_TRACK_EVENT                              = "trackEvent";
-    private static final String COMMAND_SET_OFFLINE_MODE                         = "setOfflineMode";
-    private static final String COMMAND_ON_RESUME                                = "onResume";
-    private static final String COMMAND_ON_PAUSE                                 = "onPause";
-    private static final String COMMAND_IS_ENABLED                               = "isEnabled";
-    private static final String COMMAND_SET_ENABLED                              = "setEnabled";
-    private static final String COMMAND_APP_WILL_OPEN_URL                        = "appWillOpenUrl";
-    private static final String COMMAND_GET_IDFA                                 = "getIdfa";
-    private static final String COMMAND_GET_ADID                                 = "getAdid";
-    private static final String COMMAND_GET_ATTRIBUTION                          = "getAttribution";
-    private static final String COMMAND_GET_GOOGLE_AD_ID                         = "getGoogleAdId";
-    private static final String COMMAND_ADD_SESSION_CALLBACK_PARAMETER           = "addSessionCallbackParameter";
-    private static final String COMMAND_REMOVE_SESSION_CALLBACK_PARAMETER        = "removeSessionCallbackParameter";
-    private static final String COMMAND_RESET_SESSION_CALLBACK_PARAMETERS        = "resetSessionCallbackParameters";
-    private static final String COMMAND_ADD_SESSION_PARTNER_PARAMETER            = "addSessionPartnerParameter";
-    private static final String COMMAND_REMOVE_SESSION_PARTNER_PARAMETER         = "removeSessionPartnerParameter";
-    private static final String COMMAND_RESET_SESSION_PARTNER_PARAMETERS         = "resetSessionPartnerParameters";
-    private static final String COMMAND_SEND_FIRST_PACKAGES                      = "sendFirstPackages";
-    private static final String COMMAND_REFERRER                                 = "setReferrer";
+    private static final String COMMAND_CREATE                                  = "create";
+    private static final String COMMAND_SET_ATTRIBUTION_CALLBACK                = "setAttributionCallback";
+    private static final String COMMAND_SET_EVENT_TRACKING_SUCCEEDED_CALLBACK   = "setEventTrackingSucceededCallback";
+    private static final String COMMAND_SET_EVENT_TRACKING_FAILED_CALLBACK      = "setEventTrackingFailedCallback";
+    private static final String COMMAND_SET_SESSION_TRACKING_SUCCEEDED_CALLBACK = "setSessionTrackingSucceededCallback";
+    private static final String COMMAND_SET_SESSION_TRACKING_FAILED_CALLBACK    = "setSessionTrackingFailedCallback";
+    private static final String COMMAND_SET_DEFERRED_DEEPLINK_CALLBACK          = "setDeferredDeeplinkCallback";
+    private static final String COMMAND_SET_PUSH_TOKEN                          = "setPushToken";
+    private static final String COMMAND_TRACK_EVENT                             = "trackEvent";
+    private static final String COMMAND_SET_OFFLINE_MODE                        = "setOfflineMode";
+    private static final String COMMAND_ON_RESUME                               = "onResume";
+    private static final String COMMAND_ON_PAUSE                                = "onPause";
+    private static final String COMMAND_IS_ENABLED                              = "isEnabled";
+    private static final String COMMAND_SET_ENABLED                             = "setEnabled";
+    private static final String COMMAND_APP_WILL_OPEN_URL                       = "appWillOpenUrl";
+    private static final String COMMAND_GET_IDFA                                = "getIdfa";
+    private static final String COMMAND_GET_ADID                                = "getAdid";
+    private static final String COMMAND_GET_ATTRIBUTION                         = "getAttribution";
+    private static final String COMMAND_GET_GOOGLE_AD_ID                        = "getGoogleAdId";
+    private static final String COMMAND_ADD_SESSION_CALLBACK_PARAMETER          = "addSessionCallbackParameter";
+    private static final String COMMAND_REMOVE_SESSION_CALLBACK_PARAMETER       = "removeSessionCallbackParameter";
+    private static final String COMMAND_RESET_SESSION_CALLBACK_PARAMETERS       = "resetSessionCallbackParameters";
+    private static final String COMMAND_ADD_SESSION_PARTNER_PARAMETER           = "addSessionPartnerParameter";
+    private static final String COMMAND_REMOVE_SESSION_PARTNER_PARAMETER        = "removeSessionPartnerParameter";
+    private static final String COMMAND_RESET_SESSION_PARTNER_PARAMETERS        = "resetSessionPartnerParameters";
+    private static final String COMMAND_SEND_FIRST_PACKAGES                     = "sendFirstPackages";
+    private static final String COMMAND_REFERRER                                = "setReferrer";
+    private static final String COMMAND_SET_TESTING_MODE                        = "setTestingMode";
 
     private static final String ATTRIBUTION_TRACKER_TOKEN   = "trackerToken";
     private static final String ATTRIBUTION_TRACKER_NAME    = "trackerName";
@@ -268,7 +269,14 @@ public class AdjustCordova extends CordovaPlugin
             Adjust.setReferrer(referrer);
             
             return true;
+        } else if (action.equals(COMMAND_SET_TESTING_MODE)) {
+            final String baseUrl = args.getString(0);
+            
+            AdjustFactory.setTestingMode(baseUrl);
+            
+            return true;
         }
+
 
         String errorMessage = String.format("Invalid call (%s)", action);
         Logger logger = (Logger)AdjustFactory.getLogger();

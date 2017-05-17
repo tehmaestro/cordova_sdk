@@ -28,6 +28,22 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+
+        var baseUrl = 'https://10.0.2.2:8443';
+        Adjust.setTestingMode(baseUrl);
+
+        AdjustTesting.initTestSession(baseUrl, function(json) {
+            var commandDict = JSON.parse(json);
+            var className = commandDict['className'];
+            var functionName = commandDict['functionName'];
+            var params = commandDict['params'];
+
+            console.log('>>>>>>>>>> className: ' + className);
+            console.log('>>>>>>>>>> functionName: ' + functionName);
+            console.log('>>>>>>>>>> params: ' + params);
+
+            commandExecutor.executeCommand(className, functionName, params);
+        });
     },
 
     // Update DOM on a Received Event
