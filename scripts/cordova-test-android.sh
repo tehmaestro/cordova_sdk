@@ -40,7 +40,7 @@ cordova plugin add https://github.com/apache/cordova-plugin-device.git
 cordova plugin add cordova-universal-links-plugin
 
 echo -e "${GREEN}>>> Running Cordova build Android ${NC}"
-cordova run android
+#cordova run android
 
 # echo -e "${GREEN}>>> Build successful. APK generated ${NC}"
 # echo -e "${GREEN}>>> Build successful. Installing APK on device ${NC}"

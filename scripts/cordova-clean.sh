@@ -8,7 +8,7 @@ SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Traverse up to get to the root directory
 SDK_DIR="$(dirname "$SCRIPTS_DIR")"
-EXAMPLE_DIR=example
+EXAMPLE_DIR=example_ci
 SDK_NAME=com.adjust.sdk
 
 RED='\033[0;31m' 	# Red color
