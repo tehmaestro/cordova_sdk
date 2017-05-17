@@ -1,0 +1,125 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"LaunchMyApp\"><param name=\"android-package\" value=\"nl.xservices.plugins.LaunchMyApp\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"UniversalLinks\"><param name=\"android-package\" value=\"com.nordnetab.cordova.ul.UniversalLinksPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest/application/activity": [
+                        {
+                            "xml": "<intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><category android:name=\"android.intent.category.BROWSABLE\" /><data android:scheme=\"adjustExample\" /></intent-filter>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><category android:name=\"android.intent.category.BROWSABLE\" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /></intent-filter>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "adjustExample",
+            "ANDROID_SCHEME": " ",
+            "ANDROID_HOST": " ",
+            "ANDROID_PATHPREFIX": "/",
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-universal-links-plugin": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "cordova-plugin-customurlscheme.LaunchMyApp",
+            "file": "plugins/cordova-plugin-customurlscheme/www/android/LaunchMyApp.js",
+            "pluginId": "cordova-plugin-customurlscheme",
+            "clobbers": [
+                "window.plugins.launchmyapp"
+            ]
+        },
+        {
+            "id": "cordova-plugin-dialogs.notification",
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "id": "cordova-plugin-dialogs.notification_android",
+            "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device.device",
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "id": "cordova-universal-links-plugin.universalLinks",
+            "file": "plugins/cordova-universal-links-plugin/www/universal_links.js",
+            "pluginId": "cordova-universal-links-plugin",
+            "clobbers": [
+                "universalLinks"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-console": "1.0.7",
+        "cordova-plugin-customurlscheme": "4.2.0",
+        "cordova-plugin-dialogs": "1.3.3",
+        "cordova-plugin-whitelist": "1.3.2",
+        "cordova-plugin-device": "1.1.7-dev",
+        "cordova-universal-links-plugin": "1.2.1"
+    }
+}

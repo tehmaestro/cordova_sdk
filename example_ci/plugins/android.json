@@ -1,0 +1,37 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "adjustExample",
+            "ANDROID_SCHEME": " ",
+            "ANDROID_HOST": " ",
+            "ANDROID_PATHPREFIX": "/",
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "cordova-universal-links-plugin": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        },
+        "com.adjust.sdk": {
+            "PACKAGE_NAME": "com.adjust.examples"
+        }
+    },
+    "dependent_plugins": {}
+}
