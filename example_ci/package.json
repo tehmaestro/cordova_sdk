@@ -18,12 +18,12 @@
             "cordova-plugin-whitelist": {},
             "cordova-plugin-device": {},
             "cordova-universal-links-plugin": {},
-            "com.adjust.sdk": {},
-            "com.adjust.sdktesting": {}
+            "com.adjust.sdktesting": {},
+            "com.adjust.sdk": {}
         }
     },
     "dependencies": {
-        "com.adjust.sdk": "file:///Users/ab/Dev/cordova_sdk",
+        "com.adjust.sdktesting": "../cordova-plugin-adjust-testing",
         "cordova-android": "^6.2.3",
         "cordova-plugin-console": "^1.0.7",
         "cordova-plugin-customurlscheme": "^4.2.0",
@@ -31,6 +31,6 @@
         "cordova-plugin-dialogs": "^1.3.3",
         "cordova-plugin-whitelist": "^1.3.2",
         "cordova-universal-links-plugin": "^1.2.1",
-        "com.adjust.sdktesting": "../cordova-plugin-adjust-testing"
+        "com.adjust.sdk": "../plugin"
     }
 }
