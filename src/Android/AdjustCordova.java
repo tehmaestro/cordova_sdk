@@ -70,6 +70,7 @@ public class AdjustCordova extends CordovaPlugin
     private static final String COMMAND_SEND_FIRST_PACKAGES                     = "sendFirstPackages";
     private static final String COMMAND_REFERRER                                = "setReferrer";
     private static final String COMMAND_SET_TESTING_MODE                        = "setTestingMode";
+    private static final String COMMAND_TEARDOWN                                = "teardown";
 
     private static final String ATTRIBUTION_TRACKER_TOKEN   = "trackerToken";
     private static final String ATTRIBUTION_TRACKER_NAME    = "trackerName";
@@ -273,6 +274,12 @@ public class AdjustCordova extends CordovaPlugin
             final String baseUrl = args.getString(0);
             
             AdjustFactory.setTestingMode(baseUrl);
+            
+            return true;
+        } else if (action.equals(COMMAND_TEARDOWN)) {
+            final Boolean deleteState = args.getBoolean(0);
+            
+            AdjustFactory.teardown(this.cordova.getActivity().getApplicationContext(), deleteState);
             
             return true;
         }

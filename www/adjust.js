@@ -131,6 +131,18 @@ var Adjust = {
     setTestingMode: function(baseUrl) {
         callCordova('setTestingMode', baseUrl);
     },
+
+    teardown: function(deleteState) {
+        callCordova('teardown', deleteState);
+    },
+
+    onResume: function() {
+        callCordova('onResume');
+    },
+
+    onPause: function() {
+        callCordova('onPause');
+    },
 };
 
 function onPause() {
