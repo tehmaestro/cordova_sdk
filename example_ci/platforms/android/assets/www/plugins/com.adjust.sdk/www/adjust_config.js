@@ -37,6 +37,28 @@ AdjustConfig.LogLevelError         = "ERROR";
 AdjustConfig.LogLevelAssert        = "ASSERT";
 AdjustConfig.LogLevelSuppress      = "SUPPRESS";
 
+AdjustConfig.prototype.clone = function(rhs) {
+    this.appToken              = rhs.appToken;
+    this.environment           = rhs.environment;
+
+    this.sdkPrefix             = rhs.sdkPrefix;
+    this.logLevel              = rhs.logLevel;
+
+    this.eventBufferingEnabled = rhs.eventBufferingEnabled;
+    this.shouldLaunchDeeplink  = rhs.shouldLaunchDeeplink;
+    this.sendInBackground      = rhs.sendInBackground;
+
+    this.delayStart            = rhs.delayStart;
+
+    this.defaultTracker        = rhs.defaultTracker;
+    this.referrer              = rhs.referrer;
+    this.userAgent             = rhs.userAgent;
+
+    this.basePath              = rhs.basePath;
+
+    this.processName           = rhs.processName;
+}
+
 AdjustConfig.prototype.getUserAgent = function() {
     return this.userAgent;
 };
@@ -117,10 +139,14 @@ AdjustConfig.prototype.setShouldLaunchDeeplink = function(shouldLaunchDeeplink) 
     this.shouldLaunchDeeplink = shouldLaunchDeeplink;
 };
 
+AdjustConfig.prototype.setBasePath = function(basePath) {
+    this.basePath = basePath;
+};
+
 // @deprecated
 AdjustConfig.prototype.setCallbackListener = function(callbackListener) {
     console.warn("Calling deprecated function! Use the setAttributionCallbackListener instead. Check adjust_config.js for more info");
-    
+
     this.attributionCallbackListener = attributionCallbackListener;
 };
 
@@ -151,7 +177,7 @@ AdjustConfig.prototype.setDeferredDeeplinkCallbackListener = function(deferredDe
 // @deprecated
 AdjustConfig.prototype.hasListener = function() {
     console.warn("Calling deprecated function! Use the hasAttributionListener instead. Check adjust_config.js for more info");
-    
+
     return this.attributionCallbackListener != null;
 };
 

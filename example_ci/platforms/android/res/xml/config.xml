@@ -17,12 +17,12 @@
         <param name="android-package" value="com.nordnetab.cordova.ul.UniversalLinksPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Adjust">
-        <param name="android-package" value="com.adjust.sdk.AdjustCordova" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="AdjustTesting">
         <param name="android-package" value="com.adjust.sdktesting.AdjustTestingCordova" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Adjust">
+        <param name="android-package" value="com.adjust.sdk.AdjustCordova" />
         <param name="onload" value="true" />
     </feature>
     <name>HelloWorld</name>

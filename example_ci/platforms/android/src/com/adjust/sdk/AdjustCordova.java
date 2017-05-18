@@ -41,6 +41,7 @@ public class AdjustCordova extends CordovaPlugin
     private static final String KEY_SHOULD_LAUNCH_DEEPLINK  = "shouldLaunchDeeplink";
     private static final String KEY_USER_AGENT              = "userAgent";
     private static final String KEY_DELAY_START             = "delayStart";
+    private static final String KEY_BASE_PATH               = "basePath";
 
     private static final String COMMAND_CREATE                                  = "create";
     private static final String COMMAND_SET_ATTRIBUTION_CALLBACK                = "setAttributionCallback";
@@ -70,6 +71,7 @@ public class AdjustCordova extends CordovaPlugin
     private static final String COMMAND_SEND_FIRST_PACKAGES                     = "sendFirstPackages";
     private static final String COMMAND_REFERRER                                = "setReferrer";
     private static final String COMMAND_SET_TESTING_MODE                        = "setTestingMode";
+    private static final String COMMAND_TEARDOWN                                = "teardown";
 
     private static final String ATTRIBUTION_TRACKER_TOKEN   = "trackerToken";
     private static final String ATTRIBUTION_TRACKER_NAME    = "trackerName";
@@ -275,6 +277,12 @@ public class AdjustCordova extends CordovaPlugin
             AdjustFactory.setTestingMode(baseUrl);
             
             return true;
+        } else if (action.equals(COMMAND_TEARDOWN)) {
+            final Boolean deleteState = args.getBoolean(0);
+            
+            AdjustFactory.teardown(this.cordova.getActivity().getApplicationContext(), deleteState);
+            
+            return true;
         }
 
 
@@ -307,6 +315,7 @@ public class AdjustCordova extends CordovaPlugin
         boolean shouldLaunchDeeplink = parameters.get(KEY_SHOULD_LAUNCH_DEEPLINK).toString() == "true" ? true : false;
 
         double delayStart = Double.parseDouble(parameters.get(KEY_DELAY_START).toString());
+        String basePath = parameters.get(KEY_BASE_PATH).toString();
 
         if (isFieldValid(logLevel) && logLevel.equals("SUPPRESS")) {
             isLogLevelSuppress = true;
@@ -374,6 +383,11 @@ public class AdjustCordova extends CordovaPlugin
 
         // Delayed start
         adjustConfig.setDelayStart(delayStart);
+
+        // BasePath
+        if (isFieldValid(basePath)) {
+            adjustConfig.setBasePath(basePath);
+        }
 
         // Attribution callback
         if (AdjustCordova.attributionCallbackContext != null) {
