@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -32,6 +33,7 @@ var app = {
         var baseUrl = 'https://10.0.2.2:8443';
         Adjust.setTestingMode(baseUrl);
 
+        var commandExecutor = new CommandExecutor();
         AdjustTesting.initTestSession(baseUrl, function(json) {
             var commandDict = JSON.parse(json);
             var className = commandDict['className'];
