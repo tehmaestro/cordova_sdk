@@ -1,13 +1,45 @@
 {
-  "version": "4.11.1",
-  "name": "com.adjust.sdk",
-  "cordova_name": "Adjust SDK Cordova Plugin",
-  "description": "Cordova plugin for the Adjust SDK 4.11.1",
-  "license": "MIT License",
-  "platforms": [
-    "ios",
-    "android"
+  "_args": [
+    [
+      {
+        "raw": "/Users/ab/Dev/cordova_sdk/plugin",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/Users/ab/Dev/cordova_sdk/plugin",
+        "spec": "/Users/ab/Dev/cordova_sdk/plugin",
+        "type": "directory"
+      },
+      "/Users/ab/Dev/cordova_sdk/example_ci/node_modules"
+    ]
   ],
+  "_from": "../plugin",
+  "_id": "com.adjust.sdk@4.11.1",
+  "_inCache": true,
+  "_location": "/com.adjust.sdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/Users/ab/Dev/cordova_sdk/plugin",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/Users/ab/Dev/cordova_sdk/plugin",
+    "spec": "/Users/ab/Dev/cordova_sdk/plugin",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "file:../plugin",
+  "_shasum": "f070febc28d7dc0e152d6ea19ff93392d9469612",
+  "_shrinkwrap": null,
+  "_spec": "/Users/ab/Dev/cordova_sdk/plugin",
+  "_where": "/Users/ab/Dev/cordova_sdk/example_ci/node_modules",
+  "cordova_name": "Adjust SDK Cordova Plugin",
+  "dependencies": {},
+  "description": "Cordova plugin for the Adjust SDK 4.11.1",
+  "devDependencies": {},
   "engines": [
     {
       "name": "cordova",
@@ -27,5 +59,13 @@
     "sdk",
     "ecosystem:cordova"
   ],
-  "dependencies": {}
+  "license": "MIT License",
+  "name": "com.adjust.sdk",
+  "optionalDependencies": {},
+  "platforms": [
+    "ios",
+    "android"
+  ],
+  "readme": "ERROR: No README data found!",
+  "version": "4.11.1"
 }

@@ -1,13 +1,45 @@
 {
-  "version": "4.11.1",
-  "name": "com.adjust.sdktesting",
-  "cordova_name": "Adjust testing SDK Cordova Plugin",
-  "description": "Cordova plugin for the Adjust test SDK 4.11.1",
-  "license": "MIT License",
-  "platforms": [
-    "ios",
-    "android"
+  "_args": [
+    [
+      {
+        "raw": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+        "spec": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+        "type": "directory"
+      },
+      "/Users/ab/Dev/cordova_sdk/example_ci/node_modules"
+    ]
   ],
+  "_from": "../cordova-plugin-adjust-testing",
+  "_id": "com.adjust.sdktesting@4.11.1",
+  "_inCache": true,
+  "_location": "/com.adjust.sdktesting",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+    "spec": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "file:../cordova-plugin-adjust-testing",
+  "_shasum": "9c8e10e97308a001012ba74b20b0a6369158c318",
+  "_shrinkwrap": null,
+  "_spec": "/Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing",
+  "_where": "/Users/ab/Dev/cordova_sdk/example_ci/node_modules",
+  "cordova_name": "Adjust testing SDK Cordova Plugin",
+  "dependencies": {},
+  "description": "Cordova plugin for the Adjust test SDK 4.11.1",
+  "devDependencies": {},
   "engines": [
     {
       "name": "cordova",
@@ -27,5 +59,13 @@
     "sdk",
     "ecosystem:cordova"
   ],
-  "dependencies": {}
+  "license": "MIT License",
+  "name": "com.adjust.sdktesting",
+  "optionalDependencies": {},
+  "platforms": [
+    "ios",
+    "android"
+  ],
+  "readme": "ERROR: No README data found!",
+  "version": "4.11.1"
 }

@@ -49,8 +49,8 @@
     "#USER",
     "/"
   ],
-  "_resolved": "git+https://github.com/apache/cordova-plugin-device.git#43a1aa647b78682fd1f44a8f358d2200010f5684",
-  "_shasum": "2e83be30afb0646781b32c959464822063440b2a",
+  "_resolved": "git+https://github.com/apache/cordova-plugin-device.git#59e0a86e77eadc0d68e789d8bdd551ff358ad8ef",
+  "_shasum": "3a8223036b1537aa432ae3999cd0084d2d4f36f1",
   "_shrinkwrap": null,
   "_spec": "https://github.com/apache/cordova-plugin-device.git",
   "_where": "/Users/ab/Dev/cordova_sdk/example_ci/node_modules",
@@ -58,7 +58,7 @@
     "name": "Apache Software Foundation"
   },
   "bugs": {
-    "url": "https://github.com/apache/cordova-plugin-device/issues"
+    "url": "https://issues.apache.org/jira/browse/CB"
   },
   "cordova": {
     "id": "cordova-plugin-device",
@@ -90,7 +90,7 @@
       }
     }
   },
-  "gitHead": "43a1aa647b78682fd1f44a8f358d2200010f5684",
+  "gitHead": "59e0a86e77eadc0d68e789d8bdd551ff358ad8ef",
   "homepage": "https://github.com/apache/cordova-plugin-device#readme",
   "keywords": [
     "cordova",

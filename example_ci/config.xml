@@ -23,8 +23,8 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="android" spec="^6.2.3" />
-    <plugin name="com.adjust.sdk" spec="../plugin" />
-    <plugin name="com.adjust.sdktesting" spec="../cordova-plugin-adjust-testing" />
+    <plugin name="com.adjust.sdk" spec="file:///Users/ab/Dev/cordova_sdk/plugin" />
+    <plugin name="com.adjust.sdktesting" spec="file:///Users/ab/Dev/cordova_sdk/cordova-plugin-adjust-testing" />
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.2.0">
         <variable name="URL_SCHEME" value="adjustExample" />

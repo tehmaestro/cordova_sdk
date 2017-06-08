@@ -41,14 +41,6 @@ module.exports = [
         ]
     },
     {
-        "id": "com.adjust.sdktesting.AdjustTesting",
-        "file": "plugins/com.adjust.sdktesting/www/adjust_testing.js",
-        "pluginId": "com.adjust.sdktesting",
-        "clobbers": [
-            "AdjustTesting"
-        ]
-    },
-    {
         "id": "com.adjust.sdk.Adjust",
         "file": "plugins/com.adjust.sdk/www/adjust.js",
         "pluginId": "com.adjust.sdk",
@@ -71,6 +63,14 @@ module.exports = [
         "clobbers": [
             "AdjustEvent"
         ]
+    },
+    {
+        "id": "com.adjust.sdktesting.AdjustTesting",
+        "file": "plugins/com.adjust.sdktesting/www/adjust_testing.js",
+        "pluginId": "com.adjust.sdktesting",
+        "clobbers": [
+            "AdjustTesting"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -82,8 +82,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-device": "1.1.7-dev",
     "cordova-universal-links-plugin": "1.2.1",
-    "com.adjust.sdktesting": "4.11.1",
-    "com.adjust.sdk": "4.11.1"
+    "com.adjust.sdk": "4.11.1",
+    "com.adjust.sdktesting": "4.11.1"
 };
 // BOTTOM OF METADATA
 });

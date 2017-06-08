@@ -29,10 +29,10 @@
         "cordova-universal-links-plugin": {
             "PACKAGE_NAME": "com.adjust.examples"
         },
-        "com.adjust.sdktesting": {
+        "com.adjust.sdk": {
             "PACKAGE_NAME": "com.adjust.examples"
         },
-        "com.adjust.sdk": {
+        "com.adjust.sdktesting": {
             "PACKAGE_NAME": "com.adjust.examples"
         }
     },
