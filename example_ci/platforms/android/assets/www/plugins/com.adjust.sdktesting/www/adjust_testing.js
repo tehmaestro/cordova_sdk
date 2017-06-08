@@ -1,4 +1,6 @@
 cordova.define("com.adjust.sdktesting.AdjustTesting", function(require, exports, module) {
+'use strict';
+
 function callCordovaCallback(action, callback) {
     var args = Array.prototype.slice.call(arguments, 2);
 

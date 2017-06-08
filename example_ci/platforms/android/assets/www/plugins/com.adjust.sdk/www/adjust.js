@@ -144,6 +144,22 @@ var Adjust = {
     onPause: function() {
         callCordova('onPause');
     },
+
+    setTimerInterval: function(timerInterval) {
+        callCordova('setTimerInterval', timerInterval);
+    },
+
+    setTimerStart: function(timerStart) {
+        callCordova('setTimerStart', timerStart);
+    },
+
+    setSessionInterval: function(sessionInterval) {
+        callCordova('setSessionInterval', sessionInterval);
+    },
+
+    setSubsessionInterval: function(subsessionInterval) {
+        callCordova('setSubsessionInterval', subsessionInterval);
+    },
 };
 
 function onPause() {

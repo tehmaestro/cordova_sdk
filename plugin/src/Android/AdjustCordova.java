@@ -72,6 +72,10 @@ public class AdjustCordova extends CordovaPlugin
     private static final String COMMAND_REFERRER                                = "setReferrer";
     private static final String COMMAND_SET_TESTING_MODE                        = "setTestingMode";
     private static final String COMMAND_TEARDOWN                                = "teardown";
+    private static final String COMMAND_SET_TIMER_INTERVAL                      = "setTimerInterval";
+    private static final String COMMAND_SET_TIMER_START                         = "setTimerStart";
+    private static final String COMMAND_SET_SESSION_INTERVAL                    = "setSessionInterval";
+    private static final String COMMAND_SET_SUBSESSION_INTERVAL                 = "setSubsessionInterval";
 
     private static final String ATTRIBUTION_TRACKER_TOKEN   = "trackerToken";
     private static final String ATTRIBUTION_TRACKER_NAME    = "trackerName";
@@ -281,6 +285,30 @@ public class AdjustCordova extends CordovaPlugin
             final Boolean deleteState = args.getBoolean(0);
             
             AdjustFactory.teardown(this.cordova.getActivity().getApplicationContext(), deleteState);
+            
+            return true;
+        } else if (action.equals(COMMAND_SET_TIMER_INTERVAL)) {
+            final long timerInterval = args.getLong(0);
+            
+            AdjustFactory.setTimerInterval(timerInterval);
+            
+            return true;
+        } else if (action.equals(COMMAND_SET_TIMER_START)) {
+            final long timerStart = args.getLong(0);
+            
+            AdjustFactory.setTimerStart(timerStart);
+            
+            return true;
+        } else if (action.equals(COMMAND_SET_SESSION_INTERVAL)) {
+            final long sessionInterval = args.getLong(0);
+            
+            AdjustFactory.setSessionInterval(sessionInterval);
+            
+            return true;
+        } else if (action.equals(COMMAND_SET_SUBSESSION_INTERVAL)) {
+            final long subSessionInterval = args.getLong(0);
+            
+            AdjustFactory.setSubsessionInterval(subSessionInterval);
             
             return true;
         }
