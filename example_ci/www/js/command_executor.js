@@ -275,13 +275,21 @@ AdjustCommandExecutor.prototype.addSessionPartnerParameter = function(params) {
 };
 
 AdjustCommandExecutor.prototype.removeSessionCallbackParameter = function(params) {
-    var key = getFirstParameterValue(params, 'key');
-    Adjust.removeSessionCallbackParameter(key);
+    if ('Key' in params) {
+        var list = this.getValueFromKey(params, 'Key');
+        for (var i = 0; i < list.length; i++) {
+            Adjust.removeSessionCallbackParameter(list[i]);
+        }
+    }
 };
 
 AdjustCommandExecutor.prototype.removeSessionPartnerParameter = function(params) {
-    var key = getFirstParameterValue(params, 'key');
-    Adjust.removeSessionPartnerParameter(key);
+    if ('Key' in params) {
+        var list = this.getValueFromKey(params, 'Key');
+        for (var i = 0; i < list.length; i++) {
+            Adjust.removeSessionPartnerParameter(list[i]);
+        }
+    }
 };
 
 AdjustCommandExecutor.prototype.resetSessionCallbackParameters = function(params) {
