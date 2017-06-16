@@ -42,6 +42,7 @@ AdjustCommandExecutor.prototype.executeCommand = function(methodName, params) {
             case "setPushToken"                   : this.setPushToken(params); break;
             case "teardown"                       : this.teardown(params); break;
             case "openDeeplink"                   : this.openDeeplink(params); break;
+            case "sendReferrer"                   : this.sendReferrer(params); break;
             case "testBegin"                      : this.testBegin(params); break;
             case "testEnd"                        : this.testEnd(params); break;
         }
@@ -74,7 +75,6 @@ AdjustCommandExecutor.prototype.config = function(params) {
         adjustConfig = new AdjustConfig(null, null);
         adjustConfig.clone(frozenAdjustConfig);
     } else {
-        console.log("YAAAAAAAAY");
         var environment = getFirstParameterValue(params, 'environment');
         var appToken = getFirstParameterValue(params, 'appToken');
 
@@ -194,6 +194,7 @@ AdjustCommandExecutor.prototype.event = function(params) {
             adjustEvent.addCallbackParameter(key, value);
         }
     }
+
     if ('partnerParams' in params) {
         var partnerParams = getValueFromKey(params, "partnerParams");
         for (var i = 0; i < partnerParams.length; i = i + 2) {
@@ -202,11 +203,11 @@ AdjustCommandExecutor.prototype.event = function(params) {
             adjustEvent.addPartnerParameter(key, value);
         }
     }
-    //TODO: Add JS wrapper for order Id
-    //if ('orderId' in params) {
-    //var orderId = getFirstParameterValue(params, 'orderId');
-    //adjustEvent.setOrderId(orderId);
-    //}
+
+    if ('orderId' in params) {
+        var orderId = getFirstParameterValue(params, 'orderId');
+        adjustEvent.setTransactionId(orderId);
+    }
 
     //resave the modified adjustEvent
     this.savedInstances[eventName] = adjustEvent;
@@ -252,32 +253,43 @@ AdjustCommandExecutor.prototype.setOfflineMode = function(params) {
 AdjustCommandExecutor.prototype.sendFirstPackages = function(params) {
     Adjust.sendFirstPackages();
 };
+
 AdjustCommandExecutor.prototype.addSessionCallbackParameter = function(params) {
-    for (var param in getValueFromKey(params, "KeyValue")) {
-        var key = param[0];
-        var value = param[1];
+    var list = this.getValueFromKey(params, "KeyValue");
+    for (var i = 0; i < list.length; i = i+2){
+        var key = param[i];
+        var value = param[i+1];
         console.log(`[*] addSessionCallbackParameter: key ${key} value ${value}`);
         Adjust.addSessionCallbackParameter(key, value);
     }
 };
 
 AdjustCommandExecutor.prototype.addSessionPartnerParameter = function(params) {
-    for (var param in getValueFromKey(params, "KeyValue")) {
-        var key = param[0];
-        var value = param[1];
+    var list = this.getValueFromKey(params, "KeyValue");
+    for (var i = 0; i < list.length; i = i+2){
+        var key = param[i];
+        var value = param[i+1];
         console.log(`[*] addSessionPartnerParameter: key ${key} value ${value}`);
         Adjust.addSessionPartnerParameter(key, value);
     }
 };
 
 AdjustCommandExecutor.prototype.removeSessionCallbackParameter = function(params) {
-    var key = getFirstParameterValue(params, 'key');
-    Adjust.removeSessionCallbackParameter(key);
+    if ('Key' in params) {
+        var list = this.getValueFromKey(params, 'Key');
+        for (var i = 0; i < list.length; i++) {
+            Adjust.removeSessionCallbackParameter(list[i]);
+        }
+    }
 };
 
 AdjustCommandExecutor.prototype.removeSessionPartnerParameter = function(params) {
-    var key = getFirstParameterValue(params, 'key');
-    Adjust.removeSessionPartnerParameter(key);
+    if ('Key' in params) {
+        var list = this.getValueFromKey(params, 'Key');
+        for (var i = 0; i < list.length; i++) {
+            Adjust.removeSessionPartnerParameter(list[i]);
+        }
+    }
 };
 
 AdjustCommandExecutor.prototype.resetSessionCallbackParameters = function(params) {
@@ -297,6 +309,11 @@ AdjustCommandExecutor.prototype.openDeeplink = function(params) {
     console.log("[*] openDeeplink");
     var deeplink = getFirstParameterValue(params, "deeplink");
     Adjust.appWillOpenUrl(deeplink);
+};
+
+AdjustCommandExecutor.prototype.sendReferrer = function(params) {
+    var referrer = getFirstParameterValue(params, 'referrer');
+    Adjust.setReferrer(referrer);
 };
 
 AdjustCommandExecutor.prototype.testBegin = function(params) {

@@ -50,7 +50,7 @@
     "/"
   ],
   "_resolved": "git+https://github.com/apache/cordova-plugin-device.git#59e0a86e77eadc0d68e789d8bdd551ff358ad8ef",
-  "_shasum": "3a8223036b1537aa432ae3999cd0084d2d4f36f1",
+  "_shasum": "57022d68f17c156e90e0826d6a09ad7f5143410f",
   "_shrinkwrap": null,
   "_spec": "https://github.com/apache/cordova-plugin-device.git",
   "_where": "/Users/ab/Dev/cordova_sdk/example_ci/node_modules",

@@ -32,7 +32,7 @@
     "/"
   ],
   "_resolved": "file:../plugin",
-  "_shasum": "f070febc28d7dc0e152d6ea19ff93392d9469612",
+  "_shasum": "c0e6a46a11a9280db64ba11e4c55be68efd985a8",
   "_shrinkwrap": null,
   "_spec": "/Users/ab/Dev/cordova_sdk/plugin",
   "_where": "/Users/ab/Dev/cordova_sdk/example_ci/node_modules",
