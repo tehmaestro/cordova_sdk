@@ -13,9 +13,6 @@ CommandExecutor.prototype.executeCommand = function(className, methodName, param
 };
 
 function AdjustCommandExecutor() {
-    this.savedInstances = {};
-    this.DefaultConfigName = "defaultConfig";
-    this.DefaultEventName = "defaultEvent";
     this.basePath = null;
 };
 
@@ -52,6 +49,22 @@ AdjustCommandExecutor.prototype.factory = function(params) {
     if ('basePath' in params) {
         this.basePath = getFirstParameterValue(params, 'basePath');
     }
+
+    if ('timerInterval' in params) {
+        Adjust.setTimerInterval(parseFloat(getFirstParameterValue(params, 'timerInterval')));
+    }
+
+    if ('timerStart' in params) {
+        Adjust.setTimerStart(parseFloat(getFirstParameterValue(params, 'timerStart')));
+    }
+
+    if ('sessionInterval' in params) {
+        Adjust.setSessionInterval(parseFloat(getFirstParameterValue(params, 'sessionInterval')));
+    }
+
+    if ('subsessionInterval' in params) {
+        Adjust.setSubsessionInterval(parseFloat(getFirstParameterValue(params, 'subsessionInterval')));
+    }
 };
 
 AdjustCommandExecutor.prototype.teardown = function(params) {
@@ -62,25 +75,10 @@ AdjustCommandExecutor.prototype.teardown = function(params) {
 };
 
 AdjustCommandExecutor.prototype.config = function(params) {
-    var configName = "";
-    if ('configName' in params) {
-        configName = getFirstParameterValue(params, 'configName');
-    } else {
-        configName = this.DefaultConfigName;
-    }
+    var environment = getFirstParameterValue(params, 'environment');
+    var appToken = getFirstParameterValue(params, 'appToken');
 
-    var adjustConfig;
-    if (configName in this.savedInstances) {
-        var frozenAdjustConfig = this.savedInstances[configName];
-        adjustConfig = new AdjustConfig(null, null);
-        adjustConfig.clone(frozenAdjustConfig);
-    } else {
-        var environment = getFirstParameterValue(params, 'environment');
-        var appToken = getFirstParameterValue(params, 'appToken');
-
-        adjustConfig = new AdjustConfig(appToken, environment);
-        this.savedInstances[configName] = adjustConfig;
-    }
+    var adjustConfig = new AdjustConfig(appToken, environment);
 
     if ('logLevel' in params) {
         var logLevelS = getFirstParameterValue(params, 'logLevel');
@@ -140,44 +138,83 @@ AdjustCommandExecutor.prototype.config = function(params) {
         adjustConfig.setUserAgent(userAgent);
     }
 
-    //resave the modified adjustConfig
-    this.savedInstances[configName] = adjustConfig;
+    if ('attributionCallbackSendAll' in params) {
+        adjustConfig.setAttributionCallbackListener(function(attribution) {
+            AdjustTesting.addInfoToSend("trackerToken", attribution.trackerToken);
+            AdjustTesting.addInfoToSend("trackerName", attribution.trackerName);
+            AdjustTesting.addInfoToSend("network", attribution.network);
+            AdjustTesting.addInfoToSend("campaign", attribution.campaign);
+            AdjustTesting.addInfoToSend("adgroup", attribution.adgroup);
+            AdjustTesting.addInfoToSend("creative", attribution.creative);
+            AdjustTesting.addInfoToSend("clickLabel", attribution.clickLabel);
+            AdjustTesting.addInfoToSend("adid", attribution.adid);
+
+            AdjustTesting.sendInfoToServer();
+        });
+    }
+
+    if ('sessionCallbackSendSuccess' in params) {
+        adjustConfig.setSessionTrackingSucceededCallbackListener(function(sessionSuccess) {
+            AdjustTesting.addInfoToSend("message", sessionSuccess.message);
+            AdjustTesting.addInfoToSend("timestamp", sessionSuccess.timestamp);
+            AdjustTesting.addInfoToSend("adid", sessionSuccess.adid);
+            AdjustTesting.addInfoToSend("jsonResponse", sessionSuccess.jsonResponse);
+
+            AdjustTesting.sendInfoToServer();
+        });
+    }
+
+    if ('sessionCallbackSendFailure' in params) {
+        adjustConfig.setSessionTrackingFailedCallbackListener(function(sessionFailed) {
+            AdjustTesting.addInfoToSend("message", sessionFailed.message);
+            AdjustTesting.addInfoToSend("timestamp", sessionFailed.timestamp);
+            AdjustTesting.addInfoToSend("adid", sessionFailed.adid);
+            AdjustTesting.addInfoToSend("willRetry", sessionFailed.willRetry);
+            AdjustTesting.addInfoToSend("jsonResponse", sessionFailed.jsonResponse);
+
+            AdjustTesting.sendInfoToServer();
+        });
+    }
+
+    if ('eventCallbackSendSuccess' in params) {
+        adjustConfig.setEventTrackingSucceededCallbackListener(function(eventSuccess) {
+            AdjustTesting.addInfoToSend("message", eventSuccess.message);
+            AdjustTesting.addInfoToSend("timestamp", eventSuccess.timestamp);
+            AdjustTesting.addInfoToSend("adid", eventSuccess.adid);
+            AdjustTesting.addInfoToSend("eventToken", eventSuccess.eventToken);
+            AdjustTesting.addInfoToSend("jsonResponse", eventSuccess.jsonResponse);
+
+            AdjustTesting.sendInfoToServer();
+        });
+    }
+
+    if ('eventCallbackSendFailure' in params) {
+        adjustConfig.setEventTrackingFailedCallbackListener(function(eventFailed) {
+            AdjustTesting.addInfoToSend("message", eventFailed.message);
+            AdjustTesting.addInfoToSend("timestamp", eventFailed.timestamp);
+            AdjustTesting.addInfoToSend("adid", eventFailed.adid);
+            AdjustTesting.addInfoToSend("eventToken", eventFailed.eventToken);
+            AdjustTesting.addInfoToSend("willRetry", eventFailed.willRetry);
+            AdjustTesting.addInfoToSend("jsonResponse", eventFailed.jsonResponse);
+
+            AdjustTesting.sendInfoToServer();
+        });
+    }
+
+    return adjustConfig;
 };
 
 AdjustCommandExecutor.prototype.start = function(params) {
-    this.config(params);
-    var configName = null;
-    if ('configName' in params) {
-        configName = getFirstParameterValue(params, 'configName');
-    } else {
-        configName = this.DefaultConfigName;
-    }
-
-    var frozenAdjustConfig = this.savedInstances[configName];
-    var adjustConfig = new AdjustConfig(null, null);
-    adjustConfig.clone(frozenAdjustConfig);
+    var adjustConfig = this.config(params);
 
     adjustConfig.setBasePath(this.basePath);
+
+    Adjust.create(adjustConfig);
 };
 
 AdjustCommandExecutor.prototype.event = function(params) {
-    var eventName = null;
-    if ('eventName' in params) {
-        eventName = getFirstParameterValue(params, 'eventName');
-    } else {
-        eventName = this.DefaultEventName;
-    }
-
-    var adjustEvent;
-    if (eventName in this.savedInstances) {
-        var frozenAdjustEvent = this.savedInstances[eventName];
-        adjustEvent = new AdjustEvent(null);
-        adjustEvent.clone(frozenAdjustEvent);
-    } else {
-        var eventToken = getFirstParameterValue(params, 'eventToken');
-        adjustEvent = new AdjustEvent(eventToken);
-        this.savedInstances[eventName] = adjustEvent;
-    }
+    var eventToken = getFirstParameterValue(params, 'eventToken');
+    var adjustEvent = new AdjustEvent(eventToken);
 
     if ('revenue' in params) {
         var revenueParams = getValueFromKey(params, 'revenue');
@@ -209,21 +246,11 @@ AdjustCommandExecutor.prototype.event = function(params) {
         adjustEvent.setTransactionId(orderId);
     }
 
-    //resave the modified adjustEvent
-    this.savedInstances[eventName] = adjustEvent;
-
-    Adjust.trackEvent(adjustEvent);
+    return adjustEvent;
 };
 
 AdjustCommandExecutor.prototype.trackEvent = function(params) {
-    this.event(params);
-    var eventName = null;
-    if ('eventName' in params) {
-        eventName = getFirstParameterValue(params, 'eventName');
-    } else {
-        eventName = this.DefaultEventName;
-    }
-    var adjustEvent = this.savedInstances[eventName];
+    var adjustEvent = this.event(params);
     Adjust.trackEvent(adjustEvent);
 };
 
@@ -255,28 +282,35 @@ AdjustCommandExecutor.prototype.sendFirstPackages = function(params) {
 };
 
 AdjustCommandExecutor.prototype.addSessionCallbackParameter = function(params) {
-    var list = this.getValueFromKey(params, "KeyValue");
+    var list = getValueFromKey(params, "KeyValue");
+
     for (var i = 0; i < list.length; i = i+2){
-        var key = param[i];
-        var value = param[i+1];
+        var key = list[i];
+        var value = list[i+1];
+
         console.log(`[*] addSessionCallbackParameter: key ${key} value ${value}`);
+
         Adjust.addSessionCallbackParameter(key, value);
     }
 };
 
 AdjustCommandExecutor.prototype.addSessionPartnerParameter = function(params) {
-    var list = this.getValueFromKey(params, "KeyValue");
+    var list = getValueFromKey(params, "KeyValue");
+
     for (var i = 0; i < list.length; i = i+2){
-        var key = param[i];
-        var value = param[i+1];
+        var key = list[i];
+        var value = list[i+1];
+
         console.log(`[*] addSessionPartnerParameter: key ${key} value ${value}`);
+
         Adjust.addSessionPartnerParameter(key, value);
     }
 };
 
 AdjustCommandExecutor.prototype.removeSessionCallbackParameter = function(params) {
     if ('Key' in params) {
-        var list = this.getValueFromKey(params, 'Key');
+        var list = getValueFromKey(params, 'Key');
+
         for (var i = 0; i < list.length; i++) {
             Adjust.removeSessionCallbackParameter(list[i]);
         }
@@ -285,7 +319,8 @@ AdjustCommandExecutor.prototype.removeSessionCallbackParameter = function(params
 
 AdjustCommandExecutor.prototype.removeSessionPartnerParameter = function(params) {
     if ('Key' in params) {
-        var list = this.getValueFromKey(params, 'Key');
+        var list = getValueFromKey(params, 'Key');
+
         for (var i = 0; i < list.length; i++) {
             Adjust.removeSessionPartnerParameter(list[i]);
         }
@@ -300,24 +335,30 @@ AdjustCommandExecutor.prototype.resetSessionPartnerParameters = function(params)
     Adjust.resetSessionPartnerParameters();
 };
 
-AdjustCommandExecutor.prototype.sendPushToken = function(params) {
+AdjustCommandExecutor.prototype.setPushToken = function(params) {
+    console.log("[*] setPushToken");
+
     var token = getFirstParameterValue(params, 'pushToken');
     Adjust.setPushToken(token);
 };
 
 AdjustCommandExecutor.prototype.openDeeplink = function(params) {
     console.log("[*] openDeeplink");
+
     var deeplink = getFirstParameterValue(params, "deeplink");
     Adjust.appWillOpenUrl(deeplink);
 };
 
 AdjustCommandExecutor.prototype.sendReferrer = function(params) {
+    console.log("[*] sendReferrer");
+
     var referrer = getFirstParameterValue(params, 'referrer');
     Adjust.setReferrer(referrer);
 };
 
 AdjustCommandExecutor.prototype.testBegin = function(params) {
     console.log("[*] testBegin");
+
     if ('basePath' in params) {
         this.basePath = getFirstParameterValue(params, "basePath");
     }
@@ -327,11 +368,11 @@ AdjustCommandExecutor.prototype.testBegin = function(params) {
     Adjust.setTimerStart(-1);
     Adjust.setSessionInterval(-1);
     Adjust.setSubsessionInterval(-1);
-    for (var member in this.savedInstances) delete this.savedInstances[member];
 };
 
 AdjustCommandExecutor.prototype.testEnd = function(params) {
     console.log("[*] testEnd");
+
     Adjust.teardown(true);
 };
 

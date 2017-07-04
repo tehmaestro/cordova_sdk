@@ -285,6 +285,17 @@ public class AdjustCordova extends CordovaPlugin
             final Boolean deleteState = args.getBoolean(0);
             
             AdjustFactory.teardown(this.cordova.getActivity().getApplicationContext(), deleteState);
+
+            googleAdIdCallbackContext = null;
+            attributionCallbackContext = null;
+            eventTrackingSucceededCallbackContext = null;
+            eventTrackingFailedCallbackContext = null;
+            sessionTrackingSucceededCallbackContext = null;
+            sessionTrackingFailedCallbackContext = null;
+            deferredDeeplinkCallbackContext = null;
+            getAdidCallbackContext = null;
+            getAttributionCallbackContext = null;
+            shouldLaunchDeeplink = false;
             
             return true;
         } else if (action.equals(COMMAND_SET_TIMER_INTERVAL)) {

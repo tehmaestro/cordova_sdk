@@ -144,6 +144,10 @@ var Adjust = {
         callCordova('onPause');
     },
 
+    setReferrer: function(referrer) {
+        callCordova('setReferrer', referrer);
+    },
+
     setTimerInterval: function(timerInterval) {
         callCordova('setTimerInterval', timerInterval);
     },

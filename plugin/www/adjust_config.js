@@ -4,7 +4,7 @@ function AdjustConfig(appToken, environment) {
     this.environment = environment;
 
     this.delayStart = 0.0;
-    this.sdkPrefix = "cordova4.11.1";
+    this.sdkPrefix = "cordova4.11.2";
 
     this.logLevel = null;
     this.referrer = null;
@@ -14,12 +14,12 @@ function AdjustConfig(appToken, environment) {
     this.shouldLaunchDeeplink = null;
     this.eventBufferingEnabled = null;
 
-    this.attributionCallback = null;
-    this.eventTrackingSucceededCallback = null;
-    this.eventTrackingFailedCallback = null;
-    this.sessionTrackingSucceededCallback = null;
-    this.sessionTrackingFailedCallback = null;
-    this.deferredDeeplinkCallback = null;
+    this.attributionCallbackListener = null;
+    this.eventTrackingSucceededCallbackListener = null;
+    this.eventTrackingFailedCallbackListener = null;
+    this.sessionTrackingSucceededCallbackListener = null;
+    this.sessionTrackingFailedCallbackListener = null;
+    this.deferredDeeplinkCallbackListener = null;
 
     // Android only
     this.processName = null;
@@ -150,6 +150,7 @@ AdjustConfig.prototype.setCallbackListener = function(callbackListener) {
 };
 
 AdjustConfig.prototype.setAttributionCallbackListener = function(attributionCallbackListener) {
+    console.log(">>>> setAttributionCallbackListener(): " + this.attributionCallbackListener);
     this.attributionCallbackListener = attributionCallbackListener;
 };
 
