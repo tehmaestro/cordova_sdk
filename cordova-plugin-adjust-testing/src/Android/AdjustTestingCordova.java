@@ -42,6 +42,7 @@ public class AdjustTestingCordova extends CordovaPlugin {
                         this.cordova.getActivity().getApplicationContext(), 
                         this.commandCallbackContext)
                     );
+
             if(selectedTests != null 
                     && !selectedTests.isEmpty()) {
                 testLibrary.setTests(selectedTests);
@@ -63,7 +64,6 @@ public class AdjustTestingCordova extends CordovaPlugin {
                 testLibrary.sendInfoToServer();
             }
         } else if (action.equals(COMMAND_SET_TESTS)) {
-            Log.d(TAG, "setTests() ");
             this.selectedTests = args.getString(0);
         }
 

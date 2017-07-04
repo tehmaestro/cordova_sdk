@@ -308,8 +308,8 @@ AdjustCommandExecutor.prototype.addSessionPartnerParameter = function(params) {
 };
 
 AdjustCommandExecutor.prototype.removeSessionCallbackParameter = function(params) {
-    if ('Key' in params) {
-        var list = getValueFromKey(params, 'Key');
+    if ('key' in params) {
+        var list = getValueFromKey(params, 'key');
 
         for (var i = 0; i < list.length; i++) {
             Adjust.removeSessionCallbackParameter(list[i]);
@@ -318,8 +318,8 @@ AdjustCommandExecutor.prototype.removeSessionCallbackParameter = function(params
 };
 
 AdjustCommandExecutor.prototype.removeSessionPartnerParameter = function(params) {
-    if ('Key' in params) {
-        var list = getValueFromKey(params, 'Key');
+    if ('key' in params) {
+        var list = getValueFromKey(params, 'key');
 
         for (var i = 0; i < list.length; i++) {
             Adjust.removeSessionPartnerParameter(list[i]);
@@ -389,6 +389,7 @@ function getValueFromKey(params, key) {
 function getFirstParameterValue(params, key) {
     if (key in params) {
         var param = params[key];
+
         if(param != null || param.length >= 1) {
             return param[0];
         }

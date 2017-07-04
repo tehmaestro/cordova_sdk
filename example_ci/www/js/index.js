@@ -34,7 +34,6 @@ var app = {
         Adjust.setTestingMode(baseUrl);
 
         var commandExecutor = new CommandExecutor();
-        AdjustTesting.setTests("current/Test_AttributionCallback;current/Test_Disable_Enable;current/Test_Event_Count;current/Test_Event_OrderId;");
         AdjustTesting.initTestSession(baseUrl, function(json) {
             var commandDict = JSON.parse(json);
             var className = commandDict['className'];
