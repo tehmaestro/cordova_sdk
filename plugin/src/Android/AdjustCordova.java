@@ -410,7 +410,7 @@ public class AdjustCordova extends CordovaPlugin
         }
 
         // User agent
-        if (isFieldValid(userAgent)) {
+        if (null != userAgent) {
             adjustConfig.setUserAgent(userAgent);
         }
 
