@@ -40,9 +40,9 @@ var app = {
             var functionName = commandDict['functionName'];
             var params = commandDict['params'];
 
-            console.log('>>>>>>>>>> className: ' + className);
-            console.log('>>>>>>>>>> functionName: ' + functionName);
-            console.log('>>>>>>>>>> params: ' + params);
+            //console.log('>>>>>>>>>> className: ' + className);
+            //console.log('>>>>>>>>>> functionName: ' + functionName);
+            //console.log('>>>>>>>>>> params: ' + params);
 
             commandExecutor.executeCommand(className, functionName, params);
         });

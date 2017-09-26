@@ -1,10 +1,10 @@
 {
-    "name": "com.adjust.examples",
-    "version": "1.0.0",
-    "displayName": "HelloWorld",
-    "cordova": {
-        "platforms": [],
-        "plugins": {}
-    },
-    "dependencies": {}
+  "name": "com.adjust.examples",
+  "version": "1.0.0",
+  "displayName": "HelloWorld",
+  "cordova": {
+    "platforms": [],
+    "plugins": {}
+  },
+  "dependencies": {}
 }
