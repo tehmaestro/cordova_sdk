@@ -44,18 +44,21 @@ cordova plugin add cordova-plugin-whitelist
 cordova plugin add https://github.com/apache/cordova-plugin-device.git
 cordova plugin add cordova-universal-links-plugin
 
-echo -e "${GREEN}[*makeproject] Running Cordova build ${NC}"
+#echo -e "${GREEN}[*makeproject] Running Cordova build ${NC}"
+#cordova run android
 
+ #Comment out below and run `cordova run android` to run it locally
+ #-------------------------------
 echo -e "[*makeproject] Removing old APK ${NC}"
 cd ${ROOT_DIR}
 rm -vf app.apk
 
 echo -e "[*makeproject] Building project ${NC}"
 cd ${ROOT_DIR}/${PROJECT_DIR}
-cordova build --release --verbose android
+cordova build --debug --verbose android
 
 echo -e "[*makeproject] Building project ${NC}"
 cd ${ROOT_DIR}/${PROJECT_DIR}
-cp -v platforms/android/build/outputs/apk/android-release-unsigned.apk ${ROOT_DIR}/${SCRIPTS_DIR}/app.apk
+cp -v platforms/android/build/outputs/apk/android-debug.apk ${ROOT_DIR}/${SCRIPTS_DIR}/app.apk
 
 echo -e "[*makeproject] END ${NC}"
