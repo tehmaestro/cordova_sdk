@@ -30,7 +30,8 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
 
-        var baseUrl = 'https://10.0.2.2:8443';
+        //var baseUrl = 'https://10.0.2.2:8443';
+        var baseUrl = 'https://jenkins-1.adjust.com:8443';
         Adjust.setTestingMode(baseUrl);
 
         var commandExecutor = new CommandExecutor();
